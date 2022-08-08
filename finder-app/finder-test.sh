@@ -50,14 +50,17 @@ do
 	./writer.sh "$WRITEDIR/${username}$i.txt" "$WRITESTR"
 done
 
-OUTPUTSTRING=$(./finder.sh "$WRITEDIR" "$WRITESTR")
-
+#OUTPUTSTRING= $(./finder.sh "$WRITEDIR" "$WRITESTR")
 set +e
-echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
+	./finder.sh "$WRITEDIR" "$WRITESTR" | grep "${WRITESTR}"
+
+#echo ${ OUTPUTSTRING } | grep "${MATCHSTR}"
 if [ $? -eq 0 ]; then
 	echo "success"
 	exit 0
 else
-	echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found"
+
+	#echo "failed: expected  ${MATCHSTR} in ${OUTPUTSTRING} but instead found"
+	echo "failed: expected  ${MATCHSTR} in but instead found"
 	exit 1
 fi
